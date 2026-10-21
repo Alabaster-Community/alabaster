@@ -26,7 +26,7 @@ Open one full screen on the projector laptop (F11 in Chrome).
 ## One-time setup
 
 ### 1. Vercel
-Add New Project → import `Andradom-Software-Solutions/alabaster`. Vercel detects Astro; leave Root Directory empty. `vercel.json` adds the daily cron and headers. Move the domain over from the old project when you're ready. Add these environment variables (Production and Preview):
+Add New Project → import `Alabaster-Community/alabaster`. Vercel detects Astro; leave Root Directory empty. `vercel.json` adds the daily cron and headers. Move the domain over from the old project when you're ready. Add these environment variables (Production and Preview):
 
 | Variable | From |
 | --- | --- |

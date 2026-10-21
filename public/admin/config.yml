@@ -2,7 +2,7 @@
 # Every "Publish" saves a commit to GitHub, and Vercel rebuilds the site in about a minute.
 backend:
   name: github
-  repo: Andradom-Software-Solutions/alabaster
+  repo: Alabaster-Community/alabaster
   branch: main
   base_url: https://alabaster.community
   auth_endpoint: api/auth
