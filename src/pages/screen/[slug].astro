@@ -1,0 +1,13 @@
+---
+// One page per QR slide in content/screens.json: /screen/give/, /screen/grow/, /screen/join/ …
+// Add a slide in the /admin editor and its page appears on the next build.
+import Page from '../../components/Page.astro';
+import { qrSlides, qrSlide } from '../../templates/screens.mjs';
+import { data } from '../../data.mjs';
+
+export function getStaticPaths() {
+  return qrSlides(data).map((slide) => ({ params: { slug: slide.slug }, props: { slide } }));
+}
+const { slide } = Astro.props;
+---
+<Page {...qrSlide(data, slide)} />

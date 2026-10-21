@@ -14,5 +14,6 @@ export const data = {
   playlist: read('playlist.json'),
   faq: read('faq.json'),
   beliefs: read('beliefs.json'),
-  courses: read('courses.json')
+  courses: read('courses.json'),
+  screens: read('screens.json')
 };

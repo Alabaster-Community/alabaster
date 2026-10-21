@@ -36,6 +36,36 @@ collections:
               - { label: "Location", name: location, widget: string, default: "Vida Abundante, Richmond" }
               - { label: "Note (optional, e.g. All ages)", name: note, widget: string, required: false }
 
+      - name: screens
+        label: "Projector slides"
+        file: content/screens.json
+        fields:
+          - label: "QR slides"
+            name: slides
+            widget: list
+            hint: "Each slide is a page at alabasterchurch.org/screen/<web name>/. The QR code is made from the link, so changing the link changes the code. The slide named tonight is also /screen/."
+            summary: "/screen/{{fields.slug}}/ → {{fields.link}}"
+            fields:
+              - { label: "Web name (lowercase, dashes)", name: slug, widget: string, pattern: ['^[a-z0-9][a-z0-9-]*$', "Lowercase letters, numbers and dashes only"] }
+              - { label: "Label (top left)", name: label, widget: string }
+              - { label: "Headline (a new line breaks it)", name: headline, widget: text }
+              - { label: "Color", name: color, widget: select, options: ["gold", "teal", "violet", "amber"], default: "gold" }
+              - { label: "Numbered lines", name: steps, widget: list, field: { label: "Line", name: line, widget: string }, required: false }
+              - { label: "QR link (a page like /give/ or a full https:// address)", name: link, widget: string }
+              - { label: "Footer, left", name: footerLeft, widget: string, required: false }
+              - { label: "Footer, right", name: footerRight, widget: string, required: false }
+          - label: "Dates slide (/screen/dates/)"
+            name: dates
+            widget: object
+            hint: "The dates themselves come from Light Night dates above."
+            fields:
+              - { label: "Label (top left)", name: label, widget: string }
+              - { label: "Headline", name: headline, widget: string }
+              - { label: "QR link (leave empty for no QR)", name: link, widget: string, required: false }
+              - { label: "Words under the QR", name: linkCaption, widget: string, required: false }
+              - { label: "Footer, left", name: footerLeft, widget: string, required: false }
+              - { label: "Footer, right", name: footerRight, widget: string, required: false }
+
       - name: settings
         label: "Settings & links"
         file: content/settings.json

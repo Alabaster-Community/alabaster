@@ -1,0 +1,7 @@
+---
+// /screen/dates/: this year's Light Night dates (content/events.json) with the next one highlighted.
+import Page from '../../components/Page.astro';
+import { datesSlide } from '../../templates/screens.mjs';
+import { data } from '../../data.mjs';
+---
+<Page {...datesSlide(data)} />

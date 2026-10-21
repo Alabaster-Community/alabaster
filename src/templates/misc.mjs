@@ -102,30 +102,6 @@ export function notify({ settings: s }) {
   return layout({ title: 'Notify me', current: 'notify', settings: s, body });
 }
 
-/** Full-screen slide for the projector at Light Night. */
-export function screen({ settings: s }) {
-  const body = `
-<div class="dots" style="min-height:100vh;display:flex;flex-direction:column;justify-content:space-between;padding:6vh 6.5vw;box-sizing:border-box;font-size:1.6vw">
-  <div class="mono" style="display:flex;justify-content:space-between;font-size:1.25vw"><span style="display:flex;align-items:center;gap:.7vw"><span class="status-dot bg-gold" style="width:.75vw;height:.75vw"></span>Light Night · Live</span><span>alabaster</span></div>
-  <div style="display:flex;align-items:center;justify-content:space-between;gap:5vw">
-    <div>
-      <div class="dot-type" style="font-size:7.8vw;line-height:.92">let us pray<br>with you<span class="c-gold">.</span></div>
-      <ol style="list-style:none;margin:3.3vw 0 0;padding:0;display:flex;flex-direction:column;gap:1.1vw;font-size:2.1vw;font-weight:500">
-        <li><span class="dot-type c-gold" style="display:inline-block;width:3.4vw">01</span> Ask for prayer</li>
-        <li><span class="dot-type c-gold" style="display:inline-block;width:3.4vw">02</span> Share something anonymously</li>
-        <li><span class="dot-type c-amber" style="display:inline-block;width:3.4vw">03</span> Stay connected</li>
-      </ol>
-    </div>
-    <div style="flex:0 0 27vw;text-align:center">
-      <div style="padding:2vw;border:2px solid var(--line2);border-radius:2vw;background:#0E0E0E"><img src="/img/qr-tonight.png" alt="QR code linking to alabasterchurch.org/tonight" style="width:100%"></div>
-      <div style="font-family:'Geist Mono',monospace;font-size:1.55vw;margin-top:1.4vw">alabasterchurch.org/tonight</div>
-    </div>
-  </div>
-  <div style="display:flex;justify-content:space-between;border-top:1px solid var(--line2);padding-top:1.7vw;font-size:1.55vw" class="soft"><span>Phones out for this one. Then back to Jesus.</span><span class="mono" style="font-size:1.15vw">Only the prayer team sees your requests</span></div>
-</div>`;
-  return layout({ title: 'Light Night screen', current: 'bare', settings: s, body, noindex: true, extraHead: '<script>document.documentElement.setAttribute("data-theme","dark")</script>' });
-}
-
 export function notFound({ settings: s }) {
   const body = `<section class="wrap" style="padding-top:120px;padding-bottom:160px"><p class="mono">404</p><h1 class="dot-type" style="font-size:clamp(56px,9vw,120px);letter-spacing:0;margin:18px 0 24px">lost<span class="c-gold">.</span></h1><p class="lead">That page isn't here. <a href="/">Head home</a>.</p></section>`;
   return layout({ title: 'Not found', current: '', settings: s, body, noindex: true });

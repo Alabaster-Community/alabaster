@@ -7,15 +7,21 @@ The Alabaster website: dot-matrix design, dark/light mode, forms that feed a con
 | Piece | Where | What it does |
 | --- | --- | --- |
 | Pages | `src/pages/*.astro` → `astro build` → `dist/` | Each page wraps a template in `src/templates/`; `src/components/Page.astro` adds the head, header and footer |
-| Content | `content/*.json` | Light Night dates, prayer hour, playlist, FAQ, beliefs, giving links |
+| Content | `content/*.json` | Light Night dates, prayer hour, playlist, FAQ, beliefs, giving links, projector slides |
 | Editor | `/admin` (Decap CMS, loaded from unpkg) | Edits the content files; every Publish is a GitHub commit, and Vercel rebuilds in about a minute |
 | Forms | `public/site.js` → `api/submit.js` → Supabase | Prayer, anonymous, connect, crew, coffee and "notify me" |
 | Crew screen | `/crew-dashboard` + `public/crew.js` | Magic-link sign-in; shows new cards, flags anything older than 48 hours, marks followed up |
 | Keep-alive | `api/keepalive.js` + cron in `vercel.json` | One tiny read a day so the free Supabase project never pauses |
-| Projector slide | `/screen` | QR code to `/tonight` for Light Night |
+| Projector slides | `/screen/…` | Full-screen QR slides and the Light Night dates slide (see below) |
 
 ### Pages
-`/` · `/tonight` (what the QR opens) · `/prayer-room` · `/grow` · `/join` · `/beliefs` · `/give` · `/privacy` (includes the text-message terms carriers require) · `/notify?list=table|grow|light-night` · `/screen` · `/crew-dashboard` · `/admin` · `/calendar.ics`
+`/` · `/tonight` (what the QR opens) · `/prayer-room` · `/grow` · `/join` · `/beliefs` · `/give` · `/privacy` (includes the text-message terms carriers require) · `/notify?list=table|grow|light-night` · `/screen` · `/screen/give` · `/screen/grow` · `/screen/join` · `/screen/dates` · `/crew-dashboard` · `/admin` · `/calendar.ics`
+
+### Projector slides
+Open one full screen on the projector laptop (F11 in Chrome).
+
+- **QR slides** (`/screen/` = tonight, `/screen/give/`, `/screen/grow/`, `/screen/join/`): wording, color and link live in `content/screens.json`, under **Projector slides** in `/admin`. The QR code is generated from the link at build time (`src/qr.mjs`), so changing the link changes the code. Add a slide there and `/screen/<web name>/` appears on the next build.
+- **Dates slide** (`/screen/dates/`): shows the Light Night dates from `content/events.json`, the same list the home page uses (**Light Night dates** in `/admin`). The next one is lifted, glowing, with a countdown; past ones are struck through. The page re-checks the date in the browser every 10 minutes, so it stays right between rebuilds and on a projector left on overnight. Its QR link and wording are in the **Dates slide** section of Projector slides.
 
 ## One-time setup
 
