@@ -1,0 +1,162 @@
+# Decap CMS: the editing screen at /admin.
+# Every "Publish" saves a commit to GitHub, and Vercel rebuilds the site in about a minute.
+backend:
+  name: github
+  repo: Andradom-Software-Solutions/alabaster
+  branch: main
+  base_url: https://alabasterchurch.org
+  auth_endpoint: api/auth
+  commit_messages:
+    update: "Content: update {{slug}}"
+
+# Uploaded photos go into the site's image folder.
+media_folder: public/img/uploads
+public_folder: /img/uploads
+
+site_url: https://alabasterchurch.org
+display_url: https://alabasterchurch.org
+logo_url: /img/logo-mark.png
+
+collections:
+  - name: site
+    label: Site
+    editor: { preview: false }
+    files:
+      - name: events
+        label: "Light Night dates"
+        file: content/events.json
+        fields:
+          - label: "Light Nights"
+            name: lightNights
+            widget: list
+            summary: "{{fields.date}} · {{fields.time}}"
+            fields:
+              - { label: "Date", name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "MMM D, YYYY", time_format: false }
+              - { label: "Time", name: time, widget: string, default: "7–9 PM" }
+              - { label: "Location", name: location, widget: string, default: "Vida Abundante, Richmond" }
+              - { label: "Note (optional, e.g. All ages)", name: note, widget: string, required: false }
+
+      - name: settings
+        label: "Settings & links"
+        file: content/settings.json
+        fields:
+          - { label: "Tagline", name: tagline, widget: text }
+          - { label: "Email", name: email, widget: string }
+          - { label: "Instagram link", name: instagram, widget: string }
+          - label: "Light Night"
+            name: lightNight
+            widget: object
+            fields:
+              - { label: "Usual time", name: time, widget: string }
+              - { label: "Venue", name: venue, widget: string }
+              - { label: "Venue city", name: venueCity, widget: string }
+              - { label: "Parking & entrance", name: parking, widget: text }
+          - label: "Next prayer hour"
+            name: prayerHour
+            widget: object
+            fields:
+              - { label: "Date", name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "MMM D, YYYY", time_format: false }
+              - { label: "When (shown on the page)", name: time, widget: string }
+              - { label: "Where", name: location, widget: string }
+          - label: "Photos from the last night"
+            name: lastNight
+            widget: object
+            fields:
+              - { label: "Caption (e.g. Feb 13 · Light Night)", name: caption, widget: string }
+          - label: "Playlist links"
+            name: playlist
+            widget: object
+            fields:
+              - { label: "Spotify", name: spotify, widget: string, required: false }
+              - { label: "Apple Music", name: appleMusic, widget: string, required: false }
+              - { label: "YouTube", name: youtube, widget: string, required: false }
+          - label: "Giving"
+            name: giving
+            widget: object
+            fields:
+              - { label: "Online giving link", name: onlineUrl, widget: string, required: false }
+              - { label: "Venmo username", name: venmo, widget: string, required: false }
+              - { label: "Note", name: note, widget: text }
+          - label: "The Alabaster Table"
+            name: table
+            widget: object
+            fields:
+              - { label: "Status label", name: status, widget: string }
+              - { label: "Podcast link (leave empty until launch)", name: url, widget: string, required: false }
+          - label: "Grow cohort"
+            name: growCohort
+            widget: object
+            fields:
+              - { label: "Label (e.g. Fall 2027)", name: label, widget: string }
+              - { label: "Open for sign-up", name: open, widget: boolean }
+          - { label: "Site name", name: siteName, widget: hidden }
+          - { label: "Org name", name: orgName, widget: hidden }
+          - { label: "Site URL", name: siteUrl, widget: hidden }
+          - { label: "City", name: city, widget: hidden }
+
+      - name: playlist
+        label: "Playlist songs"
+        file: content/playlist.json
+        fields:
+          - label: "Songs"
+            name: songs
+            widget: list
+            summary: "{{fields.title}} — {{fields.artist}}"
+            fields:
+              - { label: "Song title", name: title, widget: string }
+              - { label: "Artist", name: artist, widget: string }
+
+      - name: courses
+        label: "The Table: Courses on the menu"
+        file: content/courses.json
+        fields:
+          - { label: "Table (season) shown", name: table, widget: string, default: "Table 01" }
+          - label: "Opener episode"
+            name: opener
+            widget: object
+            required: false
+            fields:
+              - { label: "Number", name: number, widget: string }
+              - { label: "Title", name: title, widget: string }
+          - label: "Courses"
+            name: courses
+            widget: list
+            summary: "{{fields.name}} — {{fields.topic}}"
+            fields:
+              - { label: "Course name", name: name, widget: string }
+              - { label: "Topic", name: topic, widget: string }
+              - { label: "Verse (optional)", name: verse, widget: string, required: false }
+              - label: "Episodes"
+                name: episodes
+                widget: list
+                summary: "{{fields.number}} {{fields.title}}"
+                fields:
+                  - { label: "Number (e.g. 01.04)", name: number, widget: string }
+                  - { label: "Kind", name: kind, widget: select, options: ["Marrow", "Daily Bread"] }
+                  - { label: "Title", name: title, widget: string }
+
+      - name: faq
+        label: "First-time questions"
+        file: content/faq.json
+        fields:
+          - label: "Questions"
+            name: items
+            widget: list
+            summary: "{{fields.q}}"
+            fields:
+              - { label: "Question", name: q, widget: string }
+              - { label: "Answer", name: a, widget: text }
+
+      - name: beliefs
+        label: "What we believe"
+        file: content/beliefs.json
+        fields:
+          - { label: "Intro", name: intro, widget: text }
+          - label: "Beliefs"
+            name: items
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Anchor id (lowercase-with-dashes)", name: id, widget: string }
+              - { label: "Title", name: title, widget: string }
+              - { label: "Text (blank line between paragraphs)", name: body, widget: text }

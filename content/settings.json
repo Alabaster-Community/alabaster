@@ -1,0 +1,41 @@
+{
+  "siteName": "Alabaster",
+  "orgName": "Alabaster Ministries",
+  "siteUrl": "https://alabasterchurch.org",
+  "city": "Richmond, VA",
+  "tagline": "For the misfit, the overlooked and the hungry. No performance. Just presence.",
+  "email": "hello@alabasterchurch.org",
+  "instagram": "https://instagram.com/alabasterministriesofficial",
+  "lightNight": {
+    "time": "7–9 PM",
+    "venue": "Vida Abundante",
+    "venueCity": "Richmond",
+    "parking": "[Parking and entrance details for Vida Abundante]"
+  },
+  "prayerHour": {
+    "date": "2027-02-02",
+    "time": "First Tuesday, 7–8 PM",
+    "location": "[Location]"
+  },
+  "lastNight": {
+    "caption": "[Date] · Light Night"
+  },
+  "playlist": {
+    "spotify": "",
+    "appleMusic": "",
+    "youtube": ""
+  },
+  "giving": {
+    "onlineUrl": "",
+    "venmo": "",
+    "note": "Every gift helps us keep Light Night free and open to everyone."
+  },
+  "table": {
+    "status": "Now recording",
+    "url": ""
+  },
+  "growCohort": {
+    "label": "Fall 2027",
+    "open": false
+  }
+}
