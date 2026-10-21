@@ -1,4 +1,4 @@
-# alabasterchurch.org
+# alabaster.community
 
 The Alabaster website: dot-matrix design, dark/light mode, forms that feed a contact list, a crew follow-up screen, and an editing screen at `/admin`. Built with Astro (one dependency). It runs free on Vercel Hobby (donations are allowed there) plus Supabase's free tier.
 
@@ -40,13 +40,13 @@ Add New Project → import `Andradom-Software-Solutions/alabaster`. Vercel detec
 1. Create a project and run `supabase/schema.sql` in the SQL Editor.
 2. Database → Extensions → enable **pg_cron**, then run the `cron.schedule(...)` line at the bottom of the schema so prayer requests are deleted after 60 days.
 3. Add yourself to the crew list: `insert into crew_members (email, name) values ('you@…', 'Michael');`
-4. Authentication → URL Configuration: set Site URL to `https://alabasterchurch.org` and add `https://alabasterchurch.org/crew-dashboard/` as a redirect URL.
+4. Authentication → URL Configuration: set Site URL to `https://alabaster.community` and add `https://alabaster.community/crew-dashboard/` as a redirect URL.
 5. Authentication → Providers → Email: turn off "Allow new users to sign up". The dashboard only signs in existing users. Create crew users under Authentication → Users → Invite, and add their emails to `crew_members`.
 
 ### 3. The editor at /admin (Decap CMS)
 1. GitHub → Settings → Developer settings → OAuth Apps → New.
-   - Homepage URL: `https://alabasterchurch.org`
-   - Authorization callback URL: `https://alabasterchurch.org/api/callback`
+   - Homepage URL: `https://alabaster.community`
+   - Authorization callback URL: `https://alabaster.community/api/callback`
 2. Put the Client ID and a new Client Secret into Vercel as `GITHUB_CLIENT_ID` / `GITHUB_CLIENT_SECRET`.
 3. Anyone who edits needs a GitHub account with write access to this repo (Settings → Collaborators).
 

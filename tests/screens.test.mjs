@@ -7,12 +7,12 @@ const json = (f) => JSON.parse(readFileSync(new URL(`../content/${f}`, import.me
 
 test('QR picks the smallest size that fits', () => {
   assert.equal(qrMatrix('HELLO').length, 21); // version 1
-  assert.equal(qrMatrix('https://alabasterchurch.org/give/').length, 29); // version 3
+  assert.equal(qrMatrix('https://alabaster.community/give/').length, 29); // version 3
   assert.equal(qrMatrix('https://example.com/' + 'x'.repeat(300)).length, 69); // version 13, 16-bit length
 });
 
 test('QR has its corner markers and timing lines', () => {
-  const m = qrMatrix('https://alabasterchurch.org/tonight/');
+  const m = qrMatrix('https://alabaster.community/tonight/');
   const n = m.length;
   for (const [x0, y0] of [[0, 0], [n - 7, 0], [0, n - 7]]) {
     for (let i = 0; i < 7; i++) {

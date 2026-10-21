@@ -4,7 +4,7 @@ backend:
   name: github
   repo: Andradom-Software-Solutions/alabaster
   branch: main
-  base_url: https://alabasterchurch.org
+  base_url: https://alabaster.community
   auth_endpoint: api/auth
   commit_messages:
     update: "Content: update {{slug}}"
@@ -13,8 +13,8 @@ backend:
 media_folder: public/img/uploads
 public_folder: /img/uploads
 
-site_url: https://alabasterchurch.org
-display_url: https://alabasterchurch.org
+site_url: https://alabaster.community
+display_url: https://alabaster.community
 logo_url: /img/logo-mark.png
 
 collections:
@@ -43,7 +43,7 @@ collections:
           - label: "QR slides"
             name: slides
             widget: list
-            hint: "Each slide is a page at alabasterchurch.org/screen/<web name>/. The QR code is made from the link, so changing the link changes the code. The slide named tonight is also /screen/."
+            hint: "Each slide is a page at alabaster.community/screen/<web name>/. The QR code is made from the link, so changing the link changes the code. The slide named tonight is also /screen/."
             summary: "/screen/{{fields.slug}}/ → {{fields.link}}"
             fields:
               - { label: "Web name (lowercase, dashes)", name: slug, widget: string, pattern: ['^[a-z0-9][a-z0-9-]*$', "Lowercase letters, numbers and dashes only"] }

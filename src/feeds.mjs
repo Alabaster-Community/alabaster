@@ -22,7 +22,7 @@ export function ics() {
   for (const e of data.events.lightNights.filter((x) => x.date >= data.today)) {
     const d = e.date.replace(/-/g, '');
     const [a, b] = toTime(e.time);
-    lines.push('BEGIN:VEVENT', `UID:light-night-${e.date}@alabasterchurch.org`, `DTSTAMP:${stamp}`,
+    lines.push('BEGIN:VEVENT', `UID:light-night-${e.date}@alabaster.community`, `DTSTAMP:${stamp}`,
       `DTSTART;TZID=America/New_York:${d}T${a}`, `DTEND;TZID=America/New_York:${d}T${b}`,
       'SUMMARY:Light Night · Alabaster', `LOCATION:${(e.location || s.lightNight.venue).replace(/,/g, '\\,')}`,
       `DESCRIPTION:Worship\\, Scripture and prayer. Free. ${s.siteUrl}`, `URL:${s.siteUrl}`, 'END:VEVENT');
