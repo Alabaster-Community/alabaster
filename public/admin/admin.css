@@ -1,0 +1,147 @@
+/* Alabaster skin for the Decap editing screen.
+   Deliberately light: Decap's inputs, dropdowns and media library are built for a
+   light background, and forcing dark produces grey-on-grey fields. So this borrows
+   the site's *light* palette instead - same paper, same type, same gold - which
+   makes /admin look like Alabaster without breaking the widgets.
+   Decap generates its class names at build time, so chrome rules use substring
+   matches and each one is harmless if it misses. */
+
+@font-face { font-family: 'Doto'; src: url('/fonts/doto-900.woff') format('woff'); font-weight: 700 900; font-display: block; }
+@font-face { font-family: 'Geist'; src: url('/fonts/geist-var.woff') format('woff'); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: 'Geist Mono'; src: url('/fonts/geist-mono-var.woff') format('woff'); font-weight: 100 900; font-display: swap; }
+
+:root {
+  --al-bg: #F4F4F1;
+  --al-surface: #FFFFFF;
+  --al-fg: #141414;
+  --al-muted: #55554F;
+  --al-faint: #6E6E68;
+  --al-line: #DCDCD5;
+  --al-line2: #C3C3BB;
+  --al-gold: #8F5E00;
+  --al-teal: #0D7472;
+  accent-color: #8F5E00;
+  color-scheme: light;
+}
+
+/* ---- Type and canvas ---------------------------------------------------- */
+
+html, body {
+  background: var(--al-bg) !important;
+  color: var(--al-fg);
+  font-family: 'Geist', ui-sans-serif, system-ui, -apple-system, sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+body input, body textarea, body select, body button {
+  font-family: 'Geist', ui-sans-serif, system-ui, sans-serif !important;
+}
+
+/* "Collections", "Site", collection titles. Doto is the site's headline face,
+   so this is the single change that most makes the editor read as Alabaster. */
+body h1, body h2 {
+  font-family: 'Doto', 'Geist', monospace !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.01em;
+  color: var(--al-fg) !important;
+}
+body h3, body h4 { font-family: 'Geist', sans-serif !important; font-weight: 600 !important; }
+
+/* The app canvas behind the cards. */
+#nc-root, #nc-root > div, [class*="AppMainContainer"], [class*="AppContainer"] {
+  background: var(--al-bg) !important;
+}
+
+/* ---- Top bar ------------------------------------------------------------ */
+
+[class*="AppHeader"], header[class*="Header"] {
+  background: var(--al-surface) !important;
+  border-bottom: 1px solid var(--al-line) !important;
+  box-shadow: none !important;
+}
+[class*="AppHeader"] a, [class*="AppHeaderNavLink"] { color: var(--al-muted) !important; }
+[class*="AppHeader"] a:hover { color: var(--al-fg) !important; }
+[class*="AppHeaderNavLink"][class*="active"],
+[class*="AppHeader"] a[class*="active"] {
+  color: var(--al-gold) !important;
+}
+/* The site address in the corner, as mono - it is a URL, so it should read like one. */
+[class*="SiteUrl"] {
+  font-family: 'Geist Mono', monospace !important;
+  font-size: 13px !important;
+  color: var(--al-faint) !important;
+  letter-spacing: 0.02em;
+}
+
+/* ---- Cards and panels --------------------------------------------------- */
+
+[class*="Card"], [class*="SidebarContainer"], [class*="CollectionTop"] {
+  background: var(--al-surface) !important;
+  border: 1px solid var(--al-line) !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+}
+
+/* The file rows (Light Night dates, Projector slides, …). A gold edge on hover
+   so it is obvious these are the things you click. */
+[class*="ListCard"], li[class*="Card"] { transition: border-color .15s ease, transform .15s ease; }
+[class*="ListCard"]:hover, li[class*="Card"]:hover {
+  border-color: var(--al-gold) !important;
+  transform: translateY(-1px);
+}
+
+/* Selected collection in the sidebar: Decap marks it with its blue. */
+[class*="SidebarNavLink"] { color: var(--al-muted) !important; border-left-color: transparent !important; }
+[class*="SidebarNavLink"][class*="active"] {
+  color: var(--al-gold) !important;
+  background: rgba(143, 94, 0, 0.07) !important;
+  border-left: 3px solid var(--al-gold) !important;
+}
+[class*="SidebarHeading"] { color: var(--al-fg) !important; }
+
+/* ---- Controls ----------------------------------------------------------- */
+
+button[class*="primary"], [class*="Button"][class*="primary"],
+button[class*="Publish"], [class*="Toolbar"] button[class*="success"] {
+  background: var(--al-gold) !important;
+  border-color: var(--al-gold) !important;
+  color: #FFFFFF !important;
+}
+button[class*="primary"]:hover { filter: brightness(1.08); }
+
+a, [class*="link"] { color: var(--al-teal); }
+
+input[type="text"], input[type="search"], textarea, select, [class*="SearchInput"] {
+  background: var(--al-surface) !important;
+  border: 1px solid var(--al-line2) !important;
+  border-radius: 10px !important;
+  color: var(--al-fg) !important;
+}
+input:focus, textarea:focus, select:focus {
+  outline: 2px solid var(--al-gold) !important;
+  outline-offset: 1px;
+  border-color: var(--al-gold) !important;
+}
+
+/* The hint text under a field, which several fields now rely on. */
+[class*="FieldHint"], [class*="hint"] { color: var(--al-faint) !important; font-size: 13px !important; }
+
+/* ---- Sign-in screen ----------------------------------------------------- */
+/* The first thing a volunteer sees, and stock Decap makes it a bare button. */
+
+[class*="LoginPage"], [class*="loginPage"] {
+  background: var(--al-bg) !important;
+}
+[class*="LoginPage"] button, [class*="loginPage"] button {
+  background: var(--al-gold) !important;
+  border-color: var(--al-gold) !important;
+  color: #FFFFFF !important;
+  font-weight: 600 !important;
+  border-radius: 999px !important;
+  padding: 14px 28px !important;
+  font-size: 16px !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
