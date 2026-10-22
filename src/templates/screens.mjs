@@ -84,10 +84,11 @@ export function datesSlide(data) {
   const next = all.find((e) => e.date >= data.today);
   const year = next ? next.date.slice(0, 4) : (all.length ? all[all.length - 1].date.slice(0, 4) : data.today.slice(0, 4));
 
+  const nextLocation = String(next?.location || '').trim();
   const venueName = String(s.lightNight.venue || '').trim();
   const venueCity = String(s.lightNight.venueCity || '').trim();
-  const whereText = venueName ? (venueCity ? `${venueName} \u00b7 ${venueCity}` : venueName) : 'Venue TBD';
-  const whereTbd = venueName ? '' : ' is-tbd';
+  const whereText = nextLocation || (venueName ? (venueCity ? `${venueName} \u00b7 ${venueCity}` : venueName) : 'Venue TBD');
+  const whereTbd = nextLocation || venueName ? '' : ' is-tbd';
   const whenText = String(s.lightNight.time || '').trim();
   const longDay = (iso) => { const { y, m, d } = parseDate(iso); return `${DAYS[new Date(Date.UTC(y, m - 1, d)).getUTCDay()]}, ${MONTHS[m - 1]} ${d}`; };
 

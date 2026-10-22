@@ -9,8 +9,11 @@ export const tbd = (v, label = 'TBD') => {
   const t = String(v ?? '').trim();
   return t ? esc(t) : `<span class="tbd">${esc(label)}</span>`;
 };
-/** "Vida Abundante, Richmond", or a muted "Venue TBD" until the venue is set. */
-export const venueLine = (ln = {}) => {
+/** Where a Light Night is. A night's own location wins, since the venue moves;
+ *  otherwise the usual venue from settings; otherwise a muted "Venue TBD". */
+export const venueLine = (ln = {}, event = null) => {
+  const own = String(event?.location ?? '').trim();
+  if (own) return esc(own);
   const v = String(ln.venue ?? '').trim();
   const c = String(ln.venueCity ?? '').trim();
   if (!v) return `<span class="tbd">Venue TBD</span>${c ? ` \u00b7 ${esc(c)}` : ''}`;

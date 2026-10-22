@@ -39,7 +39,7 @@ export default function home({ settings: s, events, playlist, faq, today, course
     </div>
     <dl class="facts">
       <dt>When</dt><dd>Saturday, ${esc(next ? next.time : s.lightNight.time)}</dd>
-      <dt>Where</dt><dd>${venueLine(s.lightNight)}</dd>
+      <dt>Where</dt><dd>${venueLine(s.lightNight, next)}</dd>
       <dt>Cost</dt><dd>Free, always</dd>
       <dt>Bring</dt><dd>A friend</dd>
       <dt></dt><dd><a href="/calendar.ics" style="font-weight:600">Add to calendar →</a></dd>
