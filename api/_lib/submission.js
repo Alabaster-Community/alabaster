@@ -54,9 +54,11 @@ export function buildRecord(input) {
 
   const phone = normalizePhone(input.phone);
   const parentPhone = normalizePhone(input.parentPhone, "parent's phone number");
-  // Never keep a minor's own number; we contact them through a parent.
+  // Never keep a minor's own contact details; we reach them through a parent.
+  // The forms hide these fields, but a direct post must not get round that.
   record.phone = isMinor ? null : phone || null;
   record.parent_phone = parentPhone || null;
+  if (isMinor) record.contact = null;
 
   const page = str(input.page, 60);
   if (page) record.details.page = page;

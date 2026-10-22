@@ -84,6 +84,13 @@ export function datesSlide(data) {
   const next = all.find((e) => e.date >= data.today);
   const year = next ? next.date.slice(0, 4) : (all.length ? all[all.length - 1].date.slice(0, 4) : data.today.slice(0, 4));
 
+  const venueName = String(s.lightNight.venue || '').trim();
+  const venueCity = String(s.lightNight.venueCity || '').trim();
+  const whereText = venueName ? (venueCity ? `${venueName} \u00b7 ${venueCity}` : venueName) : 'Venue TBD';
+  const whereTbd = venueName ? '' : ' is-tbd';
+  const whenText = String(s.lightNight.time || '').trim();
+  const longDay = (iso) => { const { y, m, d } = parseDate(iso); return `${DAYS[new Date(Date.UTC(y, m - 1, d)).getUTCDay()]}, ${MONTHS[m - 1]} ${d}`; };
+
   const cards = all.map((e) => {
     const { y, m, d } = parseDate(e.date);
     const wd = DAYS[new Date(Date.UTC(y, m - 1, d)).getUTCDay()];
@@ -104,10 +111,15 @@ export function datesSlide(data) {
   <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:5vw">
     <div>
       <div class="dot-type" style="font-size:6vw;line-height:.95">${esc(cfg.headline || 'light nights')} <span class="c-gold" data-ln-year>${esc(year)}</span></div>
-      <p class="soft" style="font-size:1.9vw;margin:1.6vw 0 0">${esc(s.lightNight.venue)}, ${esc(s.lightNight.venueCity)} · <span data-ln-next-text>${next ? `Next: ${MONTHS[parseDate(next.date).m - 1]} ${parseDate(next.date).d}` : 'More dates soon'}</span></p>
     </div>
     ${cfg.link ? qrSide(cfg.link, s, cfg.linkCaption) : ''}
   </div>
+  <div class="ln-facts">
+    <div class="ln-fact ln-where"><span class="k mono">Where</span><span class="v${whereTbd}">${esc(whereText)}</span></div>
+    ${whenText ? `<div class="ln-fact"><span class="k mono">When</span><span class="v">${esc(whenText)}</span></div>` : ''}
+    <div class="ln-fact"><span class="k mono">Next</span><span class="v" data-ln-next-text>${next ? longDay(next.date) : 'Dates coming'}</span></div>
+  </div>
+  <div class="ln-rule"></div>
   <ol class="ln-row">
       ${cards}
   </ol>
@@ -116,6 +128,7 @@ export function datesSlide(data) {
 <script>
 (function () {
   var MONTHS = ${JSON.stringify(MONTHS)};
+  var DAYS = ${JSON.stringify(DAYS)};
   function iso(d) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
   function days(a, b) { var p = a.split('-'), q = b.split('-'); return Math.round((Date.UTC(q[0], q[1] - 1, q[2]) - Date.UTC(p[0], p[1] - 1, p[2])) / 864e5); }
   function update() {
@@ -126,7 +139,7 @@ export function datesSlide(data) {
       var year = next ? next.slice(0, 4) : (dates.length ? dates[dates.length - 1].slice(0, 4) : today.slice(0, 4));
       document.querySelector('[data-ln-year]').textContent = year;
       var t = document.querySelector('[data-ln-next-text]');
-      if (t) t.textContent = next ? 'Next: ' + MONTHS[+next.slice(5, 7) - 1] + ' ' + (+next.slice(8, 10)) : 'More dates soon';
+      if (t) t.textContent = next ? DAYS[new Date(Date.UTC(+next.slice(0, 4), +next.slice(5, 7) - 1, +next.slice(8, 10))).getUTCDay()] + ', ' + MONTHS[+next.slice(5, 7) - 1] + ' ' + (+next.slice(8, 10)) : 'Dates coming';
       document.querySelectorAll('.ln-card').forEach(function (c) {
         var d = c.getAttribute('data-date');
         c.hidden = c.getAttribute('data-year') !== year;
@@ -144,7 +157,14 @@ export function datesSlide(data) {
 </script>`);
 
   const style = `<style>
-.ln-row { list-style: none; margin: 1.6vw 0 0; padding: 0; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 1.5vw; align-items: center; }
+.ln-facts { display: flex; gap: 4.2vw; margin: 2vw 0 0; flex-wrap: wrap; align-items: flex-start; }
+.ln-fact { display: flex; flex-direction: column; gap: .5vw; }
+.ln-fact .k { font-size: 1.05vw; letter-spacing: .14em; text-transform: uppercase; color: var(--faint); }
+.ln-fact .v { font-size: 2.35vw; line-height: 1.1; font-weight: 500; color: var(--fg); }
+.ln-where .v { color: var(--gold); }
+.ln-fact .v.is-tbd { color: var(--faint); font-weight: 400; }
+.ln-rule { height: 1px; background: var(--line); margin-top: 2vw; }
+.ln-row { list-style: none; margin: 3.4vw 0 0; padding: 0; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 1.5vw; align-items: center; }
 .ln-card { position: relative; padding: 2vw 1.5vw 1.7vw; border: 1px solid var(--line2); border-radius: 1.4vw; background: #121211; transition: transform .6s cubic-bezier(.2,.8,.2,1), opacity .6s; }
 .ln-card[hidden] { display: none; }
 .ln-month { font-size: 1.15vw; color: var(--muted); }

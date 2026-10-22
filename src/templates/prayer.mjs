@@ -1,4 +1,4 @@
-import { esc, dotDate, dotIcon, layout } from '../lib.mjs';
+import { esc, dotDate, dotIcon, layout, tbd } from '../lib.mjs';
 
 const hp = '<div class="hp" aria-hidden="true"><label>Leave this empty <input name="website" tabindex="-1" autocomplete="off"></label></div>';
 
@@ -20,8 +20,8 @@ export default function prayer({ settings: s }) {
   <div class="wrap next">
     <div><h2 id="ph-next" class="mono">Next prayer hour</h2><div class="big-date">${ph.date ? dotDate(ph.date) : 'soon'}</div></div>
     <dl class="facts">
-      <dt>When</dt><dd>${esc(ph.time)}</dd>
-      <dt>Where</dt><dd>${esc(ph.location)}</dd>
+      <dt>When</dt><dd>${tbd(ph.time)}</dd>
+      <dt>Where</dt><dd>${tbd(ph.location, 'Location TBD')}</dd>
       <dt>Who</dt><dd>Anyone. Come late, leave early.</dd>
     </dl>
   </div>
@@ -61,10 +61,11 @@ export default function prayer({ settings: s }) {
         <div class="reveal" id="r-named" hidden>
           <div class="field-row">
             <div class="field"><label for="r-name">First name</label><input id="r-name" name="firstName" type="text" autocomplete="given-name" maxlength="60"></div>
-            <div class="field"><label for="r-contact">Phone or email</label><input id="r-contact" name="contact" type="text" autocomplete="tel" maxlength="120"></div>
+            <div class="field" id="r-contact-wrap"><label for="r-contact">Phone or email</label><input id="r-contact" name="contact" type="text" autocomplete="tel" maxlength="120"></div>
           </div>
           <label class="check"><input type="checkbox" name="followUp"> I'd like someone to follow up with me</label>
-          <label class="check"><input type="checkbox" name="isMinor"> I'm under 18 (we'll follow up through a parent)</label>
+          <label class="check"><input type="checkbox" name="isMinor" data-reveal="#r-parent" data-conceal="#r-contact-wrap"> I'm under 18 (we'll follow up through a parent)</label>
+          <div class="field" id="r-parent" hidden><label for="r-parent-phone">Parent or guardian's phone</label><input id="r-parent-phone" name="parentPhone" type="tel" inputmode="tel" maxlength="20"><p class="form-note" style="margin-top:8px">We'll check in through them, not with you directly. That's how we keep everyone safe.</p></div>
           <p class="form-note">Only the prayer team sees your name. It's never posted or shared.</p>
         </div>
         ${hp}
