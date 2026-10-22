@@ -1,0 +1,6 @@
+---
+import Page from '../components/Page.astro';
+import { notFound } from '../templates/misc.mjs';
+import { data } from '../data.mjs';
+---
+<Page {...notFound(data)} />

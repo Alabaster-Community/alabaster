@@ -1,0 +1,36 @@
+---
+// The full HTML page around every template: head, header, footer.
+import { header, footer } from '../lib.mjs';
+
+const { title, description, current, settings, body, noindex = false, extraHead = '' } = Astro.props;
+const fullTitle = title ? `${title} — ${settings.siteName}` : `${settings.siteName} — Love Jesus well`;
+const desc = description || settings.tagline;
+---
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{fullTitle}</title>
+<meta name="description" content={desc}>
+{noindex && <meta name="robots" content="noindex, nofollow">}
+<meta property="og:title" content={fullTitle}>
+<meta property="og:description" content={desc}>
+<meta property="og:image" content={`${settings.siteUrl}/img/p04.jpg`}>
+<meta name="theme-color" content="#0E0E0E">
+<link rel="icon" href="/img/logo-mark.png">
+<script is:inline>try{var t=localStorage.getItem('alabaster-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="preload" href="/fonts/doto-900.woff" as="font" type="font/woff" crossorigin>
+<link rel="preload" href="/fonts/geist-var.woff" as="font" type="font/woff" crossorigin>
+<link rel="stylesheet" href="/styles.css">
+<Fragment set:html={extraHead} />
+</head>
+<body>
+{current !== 'bare' && <Fragment set:html={header(current)} />}
+<main id="main">
+<Fragment set:html={body} />
+</main>
+{current !== 'bare' && <Fragment set:html={footer(settings)} />}
+<script is:inline src="/site.js" defer></script>
+</body>
+</html>

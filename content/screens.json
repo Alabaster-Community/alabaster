@@ -1,0 +1,52 @@
+{
+  "slides": [
+    {
+      "slug": "tonight",
+      "label": "Light Night · Live",
+      "headline": "let us pray\nwith you",
+      "color": "gold",
+      "steps": ["Ask for prayer", "Share something anonymously", "Stay connected"],
+      "link": "/tonight/",
+      "footerLeft": "Phones out for this one. Then back to Jesus.",
+      "footerRight": "Only the prayer team sees your requests"
+    },
+    {
+      "slug": "give",
+      "label": "Give",
+      "headline": "pour it\nout",
+      "color": "gold",
+      "steps": ["Give online in a minute", "Or use Venmo", "Keep Light Night free for everyone"],
+      "link": "/give/",
+      "footerLeft": "Every gift helps us keep Light Night free and open to everyone.",
+      "footerRight": "Thank you"
+    },
+    {
+      "slug": "grow",
+      "label": "Grow",
+      "headline": "grow\nwith us",
+      "color": "teal",
+      "steps": ["Start with coffee", "Pick a track", "Go deeper when you're ready"],
+      "link": "/grow/",
+      "footerLeft": "You don't have to be in the perfect season to grow.",
+      "footerRight": "Takes a minute to sign up"
+    },
+    {
+      "slug": "join",
+      "label": "Crew",
+      "headline": "join the\ncrew",
+      "color": "violet",
+      "steps": ["Worship, hosting or prayer team", "Content or dev crew", "Not sure yet? That's fine"],
+      "link": "/join/",
+      "footerLeft": "Help build what you belong to.",
+      "footerRight": "We'll figure out your fit over coffee"
+    }
+  ],
+  "dates": {
+    "label": "Light Night · Dates",
+    "headline": "light nights",
+    "link": "/notify/?list=light-night",
+    "linkCaption": "Get a text before each one",
+    "footerLeft": "Free, always. Bring a friend.",
+    "footerRight": "alabaster.community"
+  }
+}

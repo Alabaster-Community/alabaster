@@ -1,0 +1,9 @@
+---
+// /screen/ is the Light Night "tonight" slide. Its wording and link are in content/screens.json (slug "tonight").
+import Page from '../components/Page.astro';
+import { qrSlides, qrSlide } from '../templates/screens.mjs';
+import { data } from '../data.mjs';
+const slides = qrSlides(data);
+const slide = slides.find((s) => s.slug === 'tonight') || slides[0];
+---
+<Page {...qrSlide(data, slide)} />

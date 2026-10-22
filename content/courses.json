@@ -1,0 +1,46 @@
+{
+  "table": "Table 01",
+  "opener": { "number": "00", "title": "Hungry" },
+  "courses": [
+    {
+      "name": "Taste and See",
+      "topic": "Who God is",
+      "verse": "Psalm 34:8",
+      "episodes": [
+        { "number": "01.01", "kind": "Marrow", "title": "Can we actually know God?" },
+        { "number": "01.02", "kind": "Daily Bread", "title": "Holy" },
+        { "number": "01.03", "kind": "Daily Bread", "title": "What kind of Father?" }
+      ]
+    },
+    {
+      "name": "Bread of Life",
+      "topic": "Who Jesus is",
+      "verse": "John 6:35",
+      "episodes": [
+        { "number": "01.04", "kind": "Marrow", "title": "Who do you say I am?" },
+        { "number": "01.05", "kind": "Daily Bread", "title": "Gentle and lowly" },
+        { "number": "01.06", "kind": "Marrow", "title": "The cross and the empty tomb" }
+      ]
+    },
+    {
+      "name": "New Wine",
+      "topic": "The Holy Spirit",
+      "verse": "Acts 2:13",
+      "episodes": [
+        { "number": "01.07", "kind": "Marrow", "title": "Who is He?" },
+        { "number": "01.08", "kind": "Daily Bread", "title": "Being filled" },
+        { "number": "01.09", "kind": "Daily Bread", "title": "Being led" }
+      ]
+    },
+    {
+      "name": "Saying Grace",
+      "topic": "Prayer",
+      "verse": "Luke 11:1",
+      "episodes": [
+        { "number": "01.10", "kind": "Marrow", "title": "Why pray if God already knows?" },
+        { "number": "01.11", "kind": "Daily Bread", "title": "Praying Scripture" },
+        { "number": "01.12", "kind": "Daily Bread", "title": "Hearing God" }
+      ]
+    }
+  ]
+}
