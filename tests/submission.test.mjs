@@ -29,6 +29,18 @@ test('connect card: text consent only when the Light Night box is ticked and adu
   assert.equal(b.sms_consent, false);
 });
 
+test("minors: a prayer request keeps the parent's number and drops the child's own contact", () => {
+  const r = buildRecord({
+    type: 'prayer', firstName: 'Kid', message: 'pray for my mum',
+    contact: '8045550123', isMinor: true, parentPhone: '8045550199', followUp: 'on'
+  });
+  assert.equal(r.contact, null);
+  assert.equal(r.phone, null);
+  assert.equal(r.parent_phone, '+18045550199');
+  assert.equal(r.is_minor, true);
+  assert.equal(r.sms_consent, false);
+});
+
 test('minors: own number dropped, parent number required, never on the text list', () => {
   const r = buildRecord({ type: 'connect', firstName: 'Kid', isMinor: true, phone: '8045550123', parentPhone: '8045550199', lists: ['light-night'] });
   assert.equal(r.phone, null);

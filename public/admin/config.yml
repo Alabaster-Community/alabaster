@@ -78,21 +78,21 @@ collections:
             widget: object
             fields:
               - { label: "Usual time", name: time, widget: string }
-              - { label: "Venue", name: venue, widget: string }
+              - { label: "Venue", name: venue, widget: string, required: false, hint: "Leave blank until it is booked - the site shows \"Venue TBD\"." }
               - { label: "Venue city", name: venueCity, widget: string }
-              - { label: "Parking & entrance", name: parking, widget: text }
+              - { label: "Parking & entrance", name: parking, widget: text, required: false, hint: "Shown as the \"Where do I park?\" answer on the home page. Blank shows \"Parking details TBD\"." }
           - label: "Next prayer hour"
             name: prayerHour
             widget: object
             fields:
               - { label: "Date", name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "MMM D, YYYY", time_format: false }
               - { label: "When (shown on the page)", name: time, widget: string }
-              - { label: "Where", name: location, widget: string }
+              - { label: "Where", name: location, widget: string, required: false, hint: "Blank shows \"Location TBD\"." }
           - label: "Photos from the last night"
             name: lastNight
             widget: object
             fields:
-              - { label: "Caption (e.g. Feb 13 · Light Night)", name: caption, widget: string }
+              - { label: "Caption (e.g. Feb 13 · Light Night)", name: caption, widget: string, required: false, hint: "Blank hides the caption entirely." }
           - label: "Playlist links"
             name: playlist
             widget: object

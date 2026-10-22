@@ -49,16 +49,28 @@
   });
 
   // ---- Show/hide fields driven by checkboxes ----
+  // A hidden input that is still `required` makes the browser refuse to submit and
+  // refuse to focus it, so park the flag while a field is out of view and put it back.
+  function syncRequired(el) {
+    el.querySelectorAll('input, select, textarea').forEach(function (f) {
+      if (el.hidden) {
+        if (f.required) { f.setAttribute('data-was-required', '1'); f.required = false; }
+      } else if (f.getAttribute('data-was-required')) {
+        f.required = true;
+        f.removeAttribute('data-was-required');
+      }
+    });
+  }
   function syncReveal(cb) {
     var showWhenChecked = cb.getAttribute('data-reveal-when') !== 'unchecked';
     var on = showWhenChecked ? cb.checked : !cb.checked;
     (cb.getAttribute('data-reveal') || '').split(',').forEach(function (sel) {
       sel = sel.trim(); if (!sel) return;
-      document.querySelectorAll(sel).forEach(function (el) { el.hidden = !on; });
+      document.querySelectorAll(sel).forEach(function (el) { el.hidden = !on; syncRequired(el); });
     });
     (cb.getAttribute('data-conceal') || '').split(',').forEach(function (sel) {
       sel = sel.trim(); if (!sel) return;
-      document.querySelectorAll(sel).forEach(function (el) { el.hidden = cb.checked; });
+      document.querySelectorAll(sel).forEach(function (el) { el.hidden = cb.checked; syncRequired(el); });
     });
   }
   document.querySelectorAll('input[data-reveal], input[data-conceal]').forEach(function (cb) {

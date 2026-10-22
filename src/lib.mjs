@@ -3,6 +3,20 @@
 export const esc = (s = '') =>
   String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
+/** Content not filled in yet. A blank value renders as a muted placeholder, so the
+ *  page still reads and filling the field in /admin is all that's needed. */
+export const tbd = (v, label = 'TBD') => {
+  const t = String(v ?? '').trim();
+  return t ? esc(t) : `<span class="tbd">${esc(label)}</span>`;
+};
+/** "Vida Abundante, Richmond", or a muted "Venue TBD" until the venue is set. */
+export const venueLine = (ln = {}) => {
+  const v = String(ln.venue ?? '').trim();
+  const c = String(ln.venueCity ?? '').trim();
+  if (!v) return `<span class="tbd">Venue TBD</span>${c ? ` \u00b7 ${esc(c)}` : ''}`;
+  return c ? `${esc(v)}, ${esc(c)}` : esc(v);
+};
+
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 export function parseDate(iso) {

@@ -28,9 +28,10 @@ export default function grow({ settings: s }) {
       <form class="form" id="f-coffee" data-form="coffee" data-done="#d-coffee" novalidate>
         <div class="field-row">
           <div class="field"><label for="g-name">First name</label><input id="g-name" name="firstName" type="text" autocomplete="given-name" required maxlength="60"></div>
-          <div class="field"><label for="g-phone">Phone</label><input id="g-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required maxlength="20"></div>
+          <div class="field" id="g-phone-wrap"><label for="g-phone">Phone</label><input id="g-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required maxlength="20"></div>
         </div>
-        <label class="check"><input type="checkbox" name="isMinor"> I'm under 18 (we'll set it up with a parent)</label>
+        <label class="check"><input type="checkbox" name="isMinor" data-reveal="#g-parent" data-conceal="#g-phone-wrap"> I'm under 18 (we'll set it up with a parent)</label>
+        <div class="field" id="g-parent" hidden><label for="g-parent-phone">Parent or guardian's phone</label><input id="g-parent-phone" name="parentPhone" type="tel" inputmode="tel" required maxlength="20"><p class="form-note" style="margin-top:8px">We'll set the time up with them first. That's how we keep everyone safe.</p></div>
         <p class="form-note">Someone will text you personally to find a time. This doesn't add you to any list.</p>
         ${hp}
         <p class="form-error" role="alert" hidden></p>

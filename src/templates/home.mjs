@@ -1,4 +1,4 @@
-import { esc, dotDate, dotIcon, layout, upcoming } from '../lib.mjs';
+import { esc, dotDate, dotIcon, layout, upcoming, venueLine, tbd } from '../lib.mjs';
 import { quickTextForm } from './parts.mjs';
 
 export default function home({ settings: s, events, playlist, faq, today, courses }) {
@@ -39,7 +39,7 @@ export default function home({ settings: s, events, playlist, faq, today, course
     </div>
     <dl class="facts">
       <dt>When</dt><dd>Saturday, ${esc(next ? next.time : s.lightNight.time)}</dd>
-      <dt>Where</dt><dd>${esc(s.lightNight.venue)}, ${esc(s.lightNight.venueCity)}</dd>
+      <dt>Where</dt><dd>${venueLine(s.lightNight)}</dd>
       <dt>Cost</dt><dd>Free, always</dd>
       <dt>Bring</dt><dd>A friend</dd>
       <dt></dt><dd><a href="/calendar.ics" style="font-weight:600">Add to calendar →</a></dd>
@@ -58,7 +58,7 @@ export default function home({ settings: s, events, playlist, faq, today, course
 </section>
 
 <section class="wrap" aria-labelledby="photos-title" style="padding-bottom:96px">
-  <div class="section-head"><h2 id="photos-title">From the last night</h2><span class="mono small faint">${esc(s.lastNight.caption)}</span></div>
+  <div class="section-head"><h2 id="photos-title">From the last night</h2>${s.lastNight.caption ? `<span class="mono small faint">${esc(s.lastNight.caption)}</span>` : ''}</div>
   <div class="photo-row">
     <figure style="flex:1.2 1 320px"><img class="bw" src="/img/p09.jpg" alt="A young woman with her hands open and eyes down during worship" loading="lazy"><figcaption>01 · Worship</figcaption></figure>
     <figure style="flex:1.6 1 380px"><img class="bw" src="/img/p07.jpg" alt="Hands raised across the room during worship, seen from behind" loading="lazy"><figcaption>02 · Every church, one room</figcaption></figure>
@@ -153,7 +153,8 @@ ${hasPlaylist ? `<section id="playlist" class="rule-b" aria-labelledby="playlist
   <div class="wrap cols">
     <div class="side"><p class="mono">First time?</p><h2 id="ft-title" class="dot-title">no pressure.</h2></div>
     <div class="main faq">
-      ${faq.items.map((f, i) => `<details${i === 0 ? ' open' : ''}><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join('')}
+      ${[...faq.items, { q: 'Where do I park?', a: s.lightNight.parking, fromSettings: true }]
+        .map((f, i) => `<details${i === 0 ? ' open' : ''}><summary>${esc(f.q)}</summary><p>${f.fromSettings ? tbd(f.a, 'Parking details TBD') : esc(f.a)}</p></details>`).join('')}
     </div>
   </div>
 </section>

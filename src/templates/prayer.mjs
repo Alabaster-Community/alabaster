@@ -1,4 +1,4 @@
-import { esc, dotDate, dotIcon, layout } from '../lib.mjs';
+import { esc, dotDate, dotIcon, layout, tbd } from '../lib.mjs';
 
 const hp = '<div class="hp" aria-hidden="true"><label>Leave this empty <input name="website" tabindex="-1" autocomplete="off"></label></div>';
 
@@ -20,8 +20,8 @@ export default function prayer({ settings: s }) {
   <div class="wrap next">
     <div><h2 id="ph-next" class="mono">Next prayer hour</h2><div class="big-date">${ph.date ? dotDate(ph.date) : 'soon'}</div></div>
     <dl class="facts">
-      <dt>When</dt><dd>${esc(ph.time)}</dd>
-      <dt>Where</dt><dd>${esc(ph.location)}</dd>
+      <dt>When</dt><dd>${tbd(ph.time)}</dd>
+      <dt>Where</dt><dd>${tbd(ph.location, 'Location TBD')}</dd>
       <dt>Who</dt><dd>Anyone. Come late, leave early.</dd>
     </dl>
   </div>

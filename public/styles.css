@@ -81,6 +81,8 @@ a:hover { color: var(--accent); }
 h1, h2, h3 { margin: 0; font-weight: 500; letter-spacing: -0.04em; line-height: 1.02; }
 p { margin: 0; }
 .lead { font-size: 22px; line-height: 1.45; color: var(--soft); max-width: 520px; }
+/* A content field nobody has filled in yet. */
+.tbd { color: var(--faint); font-weight: 400; }
 .c-teal { color: var(--teal); } .c-violet { color: var(--violet); } .c-gold { color: var(--gold); } .c-amber { color: var(--amber); }
 .bg-teal { background: var(--teal); } .bg-violet { background: var(--violet); } .bg-gold { background: var(--gold); } .bg-amber { background: var(--amber); }
 .status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex: 0 0 auto; }
