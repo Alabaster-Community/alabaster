@@ -141,7 +141,7 @@ p { margin: 0; }
 
 /* Pathway steps */
 .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 40px; }
-.steps .num { font-family: 'Doto', monospace; font-weight: 900; font-size: 34px; line-height: 1; color: var(--fg); animation: lit 4s ease-in-out infinite; }
+.steps .num { font-family: 'Doto', monospace; font-weight: 900; font-size: 34px; line-height: 1; --c: var(--gold); color: var(--c); animation: lit 4s ease-in-out infinite; }
 .steps li:nth-child(1) .num { --c: var(--amber); animation-delay: 0s; }
 .steps li:nth-child(2) .num { --c: var(--teal); animation-delay: 1s; }
 .steps li:nth-child(3) .num { --c: var(--gold); animation-delay: 2s; }
@@ -239,7 +239,7 @@ p { margin: 0; }
 .field-row { display: flex; flex-wrap: wrap; gap: 16px; }
 .field-row > .field { flex: 1 1 220px; }
 .check { display: flex; gap: 12px; align-items: center; min-height: 44px; }
-.check input { width: 22px; height: 22px; accent-color: var(--gold); flex: 0 0 auto; }
+.check input { width: 18px; height: 18px; accent-color: var(--gold); flex: 0 0 auto; }
 .check.boxed { border: 1px solid var(--line2); border-radius: 14px; padding: 0 16px; }
 .reveal { display: flex; flex-direction: column; gap: 16px; border-left: 2px solid var(--gold); padding-left: 20px; }
 .reveal[hidden] { display: none; }
