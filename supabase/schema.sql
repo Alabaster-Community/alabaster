@@ -69,6 +69,14 @@ language sql stable security definer set search_path = public as $$
   select exists (select 1 from public.crew_members c where lower(c.email) = lower(auth.jwt() ->> 'email') and c.can_see_prayer);
 $$;
 
+-- These two are only ever called from the policies below, by a signed-in crew member.
+-- Postgres grants EXECUTE to PUBLIC by default, which would expose them at
+-- /rest/v1/rpc/... to anyone holding the (public) anon key.
+revoke execute on function public.is_crew() from public;
+revoke execute on function public.crew_sees_prayer() from public;
+grant execute on function public.is_crew() to authenticated;
+grant execute on function public.crew_sees_prayer() to authenticated;
+
 drop policy if exists "crew can read" on public.submissions;
 create policy "crew can read" on public.submissions for select to authenticated
   using (public.is_crew() and (type not in ('prayer', 'anonymous') or public.crew_sees_prayer()));
