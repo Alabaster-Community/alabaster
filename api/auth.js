@@ -10,7 +10,10 @@ export default function handler(req, res) {
   const params = new URLSearchParams({
     client_id: clientId,
     redirect_uri: `https://${host}/api/callback`,
-    scope: 'repo,user',
+    // public_repo, not repo: this repository is public, and `repo` would hand the app
+    // control of every private repository the editor can reach. read:user is only for
+    // the name and avatar Decap shows. Widen to `repo` if this repository goes private.
+    scope: 'public_repo,read:user',
     state
   });
   res.writeHead(302, { Location: `https://github.com/login/oauth/authorize?${params}` });
